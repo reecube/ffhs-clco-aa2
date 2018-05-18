@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eintrag erfassen - Adressen{% endblock %}
+
+{% block body %}
+    {# @var \Symfony\Component\Form\FormInterface form #}
+
+    <div>
+        <a href="{{ url('address-list') }}">
+            <span>zurück gehen</span>
+        </a>
+    </div>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Eintrag hinzufügen">
+    {{ form_end(form) }}
+{% endblock %}

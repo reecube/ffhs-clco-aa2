@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adressen{% endblock %}
+
+{% block body %}
+    {# @var \App\Document\Address[] addresses #}
+
+    {% if addresses|length %}
+        <ul>
+            {% for address in addresses %}
+                <li>
+                    <a href="{{ url('address-update', { id: address.id }) }}">
+                        <span>{{ address.firstname }}</span>
+                        <span>&nbsp;</span>
+                        <span>{{ address.lastname }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Es sind noch keine Adressen vorhanden.</p>
+    {% endif %}
+
+    <div>
+        <a href="{{ url('address-insert') }}">
+            <span>Adresse erfassen</span>
+        </a>
+    </div>
+{% endblock %}

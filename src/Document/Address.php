@@ -19,56 +19,63 @@ class Address
      *
      * @var string
      */
-    protected $firstname;
+    protected $firstname = '';
 
     /**
      * @MongoDB\Field(type="string")
      *
      * @var string
      */
-    protected $lastname;
+    protected $lastname = '';
 
     /**
      * @MongoDB\Field(type="string")
      *
      * @var string
      */
-    protected $street;
+    protected $street = '';
 
     /**
      * @MongoDB\Field(type="string")
      *
      * @var string
      */
-    protected $houseNumber;
+    protected $houseNumber = '';
 
     /**
      * @MongoDB\Field(type="string")
      *
      * @var string
      */
-    protected $zip;
+    protected $zip = '';
 
     /**
      * @MongoDB\Field(type="string")
      *
      * @var string
      */
-    protected $city;
+    protected $city = '';
+
+    /**
+     * @MongoDB\Field(type="date")
+     *
+     * @var null|\Datetime
+     */
+    protected $birthday = null;
 
     /**
      * @MongoDB\Field(type="string")
      *
      * @var string
      */
-    protected $email;
+    protected $email = '';
 
     /**
      * @MongoDB\Field(type="string")
      *
      * @var string
      */
-    protected $phone;
+    protected $phone = '';
 
     /**
      * @return mixed
@@ -180,6 +187,22 @@ class Address
     public function setCity(string $city): void
     {
         $this->city = $city;
+    }
+
+    /**
+     * @return \Datetime|null
+     */
+    public function getBirthday(): ?\Datetime
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param \Datetime|null $birthday
+     */
+    public function setBirthday(?\Datetime $birthday): void
+    {
+        $this->birthday = $birthday;
     }
 
     /**
