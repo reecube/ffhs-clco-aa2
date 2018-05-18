@@ -33,6 +33,7 @@ class AddressType extends AbstractType
             'label' => 'Ort',
         ]);
         $builder->add('birthday', DateType::class, [
+            'widget' => 'single_text',
             'label' => 'Geburtsdatum',
         ]);
         $builder->add('email', EmailType::class, [

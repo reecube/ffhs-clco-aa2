@@ -59,9 +59,9 @@ class Address
     /**
      * @MongoDB\Field(type="date")
      *
-     * @var null|\Datetime
+     * @var \Datetime
      */
-    protected $birthday = null;
+    protected $birthday;
 
     /**
      * @MongoDB\Field(type="string")
@@ -76,6 +76,11 @@ class Address
      * @var string
      */
     protected $phone = '';
+
+    public function __construct()
+    {
+        $this->birthday = new \DateTime('1990-01-01T12:00:00.000000Z');
+    }
 
     /**
      * @return mixed
@@ -190,17 +195,17 @@ class Address
     }
 
     /**
-     * @return \Datetime|null
+     * @return \Datetime
      */
-    public function getBirthday(): ?\Datetime
+    public function getBirthday(): \Datetime
     {
         return $this->birthday;
     }
 
     /**
-     * @param \Datetime|null $birthday
+     * @param \Datetime $birthday
      */
-    public function setBirthday(?\Datetime $birthday): void
+    public function setBirthday(\Datetime $birthday): void
     {
         $this->birthday = $birthday;
     }
