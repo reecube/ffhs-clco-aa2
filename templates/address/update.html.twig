@@ -1,19 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Eintrag bearbeiten - Adressen{% endblock %}
+{% set title = 'Adresse bearbeiten' %}
 
-{% block body %}
+{% block content %}
     {# @var \App\Document\Address address #}
     {# @var \Symfony\Component\Form\FormInterface form #}
 
-    <div>
-        <a href="{{ url('address-list') }}">
-            <span>zurück gehen</span>
+    <p>
+        <a class="btn btn-primary" href="{{ url('address-list') }}">
+            <span>zurück zur Übersicht</span>
         </a>
-    </div>
+    </p>
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <input type="submit" value="Anpassungen speichern">
+    <p>
+        <a class="btn btn-primary" href="{{ url('address-list') }}">
+            <span>zurück zur Übersicht</span>
+        </a>
+        <input class="btn btn-success" type="submit" value="Adresse speichern">
+    </p>
     {{ form_end(form) }}
 {% endblock %}

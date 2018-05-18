@@ -97,4 +97,29 @@ class AddressController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/address/delete/{id}", name="address-delete")
+     *
+     * @param string $id
+     * @return Response
+     */
+    public function delete(string $id): Response
+    {
+        $om = $this->get('doctrine_mongodb')->getManager();
+
+        $repoAddr = $om->getRepository(Address::class);
+
+        $address = $repoAddr->find($id);
+
+        if ($address === null) {
+            // 404 resource not found
+            return $this->redirectToRoute('address-list');
+        }
+
+        $om->remove($address);
+        $om->flush();
+
+        return $this->redirectToRoute('address-list');
+    }
 }

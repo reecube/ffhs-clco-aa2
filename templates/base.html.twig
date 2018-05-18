@@ -1,12 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+              integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+              crossorigin="anonymous">
+        <style>
+            body {
+                padding-top: 90px;
+            }
+
+            form input[type="submit"] {
+                float: right;
+            }
+
+            .css-address-entry-controls {
+                margin: 0;
+                padding: 0;
+
+                list-style: none;
+
+                text-align: center;
+            }
+
+            .css-address-entry-controls li {
+                display: inline-block;
+
+                margin-left: 5px;
+            }
+
+            .css-address-entry-controls .css-delete {
+                float: left;
+
+                margin: 0;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="{{ url('index') }}">
+            <span>ffhs-clco-aa2</span>
+        </a>
+        <small>by Samuel Wicky & Yves Riedener</small>
+    </nav>
+
+    {% block container %}
+        <div class="row row-lg">
+            <div class="hidden-xs hidden-sm col-md-3 col-lg-4">&nbsp;</div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card text-white bg-secondary mb-3">
+                    <div class="card-header">
+                        <h1>
+                            <span>{{ title }}</span>
+                        </h1>
+                    </div>
+                    <div class="card-body">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-3 col-lg-4">&nbsp;</div>
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://bootswatch.com/_vendor/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://bootswatch.com/_vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        $(document).on('click', '.js-confirm-delete', function (event) {
+            if (!confirm('Unwiderruflich löschen?')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+{% endblock %}
+</body>
 </html>

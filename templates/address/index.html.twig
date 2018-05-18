@@ -1,29 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Adressen{% endblock %}
+{% set title = 'Adressen' %}
 
-{% block body %}
+{% block content %}
     {# @var \App\Document\Address[] addresses #}
 
+    <p>
+        <a href="{{ url('address-insert') }}" class="btn btn-primary">
+            <span>Adresse erfassen</span>
+        </a>
+    </p>
+
     {% if addresses|length %}
-        <ul>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Vorname</th>
+                <th scope="col">Nachname</th>
+                <th scope="col">Controls</th>
+            </tr>
+            </thead>
+            <tbody>
             {% for address in addresses %}
-                <li>
-                    <a href="{{ url('address-update', { id: address.id }) }}">
-                        <span>{{ address.firstname }}</span>
-                        <span>&nbsp;</span>
-                        <span>{{ address.lastname }}</span>
-                    </a>
-                </li>
+                <tr class="table-{{ loop.index0 is even ? 'primary' : 'secondary' }}">
+                    <th>{{ address.firstname }}</th>
+                    <th>{{ address.lastname }}</th>
+                    <td>
+                        <ul class="css-address-entry-controls">
+                            <li class="css-delete">
+                                <a class="js-confirm-delete" title="Löschen"
+                                   href="{{ url('address-delete', { id: address.id }) }}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('address-update', { id: address.id }) }}" title="Bearbeiten">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
             {% endfor %}
+            </tbody>
+        </table>
+        <ul>
         </ul>
     {% else %}
         <p>Es sind noch keine Adressen vorhanden.</p>
     {% endif %}
 
-    <div>
-        <a href="{{ url('address-insert') }}">
+    <p>
+        <a href="{{ url('address-insert') }}" class="btn btn-primary">
             <span>Adresse erfassen</span>
         </a>
-    </div>
+    </p>
 {% endblock %}
